@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "db8eddff-a1c5-4eef-bbe4-168173c8c02b",
+		"name": "영화 검색",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. 영화 데이터 색인",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies-recommend",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies-recommend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. 영화 데이터 검색",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies-recommend?q=나",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies-recommend"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "나"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
