@@ -45,6 +45,98 @@ curl --location --request POST 'localhost:8080/movies-recommend'
 curl --location --request GET 'localhost:8080/movies-recommend?q=나'
 ```
 
+이렇게 실행 시키면, 아래와 같이 검색 결과를 확인할 수 있습니다.
+
+```
+[
+    {
+        "movieCode": "20179083",
+        "movieName": "나피디",
+        "movieNameEnglish": "",
+        "productYear": 2016,
+        "openDate": null,
+        "typeName": "단편",
+        "productStateName": "기타",
+        "nations": [
+            "한국"
+        ],
+        "genres": [
+            "드라마"
+        ],
+        "representativeNationName": "한국",
+        "representativeGenreName": "드라마"
+    },
+    {
+        "movieCode": "20176710",
+        "movieName": "율리안나",
+        "movieNameEnglish": "Juliana",
+        "productYear": 2017,
+        "openDate": null,
+        "typeName": "단편",
+        "productStateName": "기타",
+        "nations": [
+            "한국"
+        ],
+        "genres": [
+            "기타"
+        ],
+        "representativeNationName": "한국",
+        "representativeGenreName": "기타"
+    },
+    {
+        "movieCode": "20166550",
+        "movieName": "너나 나나",
+        "movieNameEnglish": "I'M THE SAME AS YOU",
+        "productYear": 2016,
+        "openDate": null,
+        "typeName": "단편",
+        "productStateName": "기타",
+        "nations": [
+            "프랑스"
+        ],
+        "genres": [
+            "기타"
+        ],
+        "representativeNationName": "프랑스",
+        "representativeGenreName": "기타"
+    },
+    {
+        "movieCode": "20179482",
+        "movieName": "내 친구 그리고 나",
+        "movieNameEnglish": "",
+        "productYear": 2016,
+        "openDate": null,
+        "typeName": "단편",
+        "productStateName": "기타",
+        "nations": [
+            "한국"
+        ],
+        "genres": [
+            "드라마"
+        ],
+        "representativeNationName": "한국",
+        "representativeGenreName": "드라마"
+    },
+    {
+        "movieCode": "20168751",
+        "movieName": "나의 딸, 나의 누나",
+        "movieNameEnglish": "Les Cowboys",
+        "productYear": 2015,
+        "openDate": 20170323,
+        "typeName": "장편",
+        "productStateName": "개봉",
+        "nations": [
+            "프랑스"
+        ],
+        "genres": [
+            "드라마"
+        ],
+        "representativeNationName": "프랑스",
+        "representativeGenreName": "드라마"
+    }
+]
+```
+
 ## Swagger
 
 REST API를 효율적으로 테스트하기 위해서 swagger ui를 제공하고 있습니다. 서버 실행 후, 인터넷 브라우저를 열고 아래 url로 접속하면 스웨거 확인이 가능합니다.
@@ -222,7 +314,7 @@ curl --location --request PUT 'localhost:9200/movies_20220105022129' \
 ```
 
 
-## Appendix C : 영화 추천 데이터 수동 색인
+## Appendix B : 영화 추천 데이터 curl로 색인
 
 영화 추천 데이터를 만들기 위해서 API를 호출하지 않고, curl 로 인덱스를 설정하고 싶을 땐 아래 curl을 실행하면 인덱스 설정이 가능합니다. 단, 위의 인덱스 설정을 먼저 설정해야 분석기를 통해 텍스트 분석이 가능하므노 인덱스 설정을 먼저 하셔야합니다.
 
@@ -240,12 +332,13 @@ curl -X POST "localhost:9200/_bulk?pretty" -H 'Content-Type: application/json' -
 { "index" : { "_index" : "movies_20220105022129", "_id" : "cd12f962-a4f9-45eb-9b79-451da7219882" } }
 {"movieCode":"20155390","movieName":"양치기들","movieNameEnglish":"The Boys Who Cried Wolf","productYear":2015,"openDate":20160602,"typeName":"장편","productStateName":"개봉","nations":["한국"],"genres":["드라마","범죄","스릴러"],"representativeNationName":"한국","representativeGenreName":"드라마","viewCount":1019133755}
 { "index" : { "_index" : "movies_20220105022129", "_id" : "05e8b43f-582a-4765-b849-dd1a3149d18c" } }
-{"movieCode":"20000034","movieName":"공포택시","movieNameEnglish":"Ghost Taxi","productYear":2000,"openDate":20000930,"typeName":"장편","productStateName":"개봉","nations":["한국"],"genres":["드라마","코미디"],"representativeNationName":"한국","representativeGenreName":"드라마","viewCount":1629911742}
+{"movieCode": "19498009","movieName": "나는 전쟁 신부","movieNameEnglish": "I Was a Male War Bride","productYear": 1949,"openDate": null,"typeName": "","productStateName": "기타","nations": null,"genres": null,"representativeNationName": "","representativeGenreName": ""}
 '
-
-// 인덱스 실행 후 alias 지정
-curl --location --request PUT 'localhost:9200/movies_20220105022129/_alias/movies-recommend'
 ```
+
+데이터 색인 후에는 검색 가능합니다.
+
+
 
 ## Appendix C : 실행 전략
 
